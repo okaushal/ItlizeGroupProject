@@ -13,10 +13,10 @@ namespace JOOLE.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DatabaseEntities : DbContext
+    public partial class ProductEntities : DbContext
     {
-        public DatabaseEntities()
-            : base("name=DatabaseEntities")
+        public ProductEntities()
+            : base("name=ProductEntities")
         {
         }
     
