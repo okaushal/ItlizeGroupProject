@@ -80,3 +80,6 @@ C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\obj\Debug\Joole.csp
 C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\obj\Debug\Joole.csproj.CopyComplete
 C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\obj\Debug\Joole.dll
 C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\obj\Debug\Joole.pdb
+C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\bin\AutoMapper.dll
+C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\bin\AutoMapper.pdb
+C:\Users\okaus\Documents\GitHub\ItlizeGroupProject\Jle\Joole\bin\AutoMapper.xml
