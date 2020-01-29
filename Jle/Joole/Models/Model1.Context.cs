@@ -18,6 +18,7 @@ namespace Joole.Models
         public DBJooleEntities()
             : base("name=DBJooleEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
