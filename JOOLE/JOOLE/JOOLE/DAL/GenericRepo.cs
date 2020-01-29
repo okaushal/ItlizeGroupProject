@@ -1,45 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
-using JOOLE.Models;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Web;
 using JOOLE.Repository;
 
-namespace JOOLE.DAL
+namespace Joole.DAL
 {
-    public class GenericRepo<TEntity>:IGenericRepo<TEntity> where TEntity:class
+    public class GenericRepo<TEntity> : IGenericRepo<TEntity> where TEntity : class
     {
         protected readonly DbContext _context;
 
-        public TEntity getByID(int id)
+        public GenericRepo(DbContext context)
+        {
+            _context = context;
+        }
+
+        public TEntity GetbyID(int id)
         {
             return _context.Set<TEntity>().Find(id);
-        }
-        public GenericRepo(DbContext ctext)
-        {
-            _context = ctext;
         }
 
         public IEnumerable<TEntity> GetAll()
         {
             return _context.Set<TEntity>().ToList();
         }
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity,bool>> predicate)
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
+            // Find Items using other attributes than ID
             return _context.Set<TEntity>().Where(predicate);
-        
         }
 
-        public void Create(TEntity newItem)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            _context.Set<TEntity>().Add(newItem);
+            //return just the first instance of the predicate
+            return _context.Set<TEntity>().SingleOrDefault(predicate);
         }
 
-        public void Delete(TEntity item)
+        public void Add(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(item);
+            _context.Set<TEntity>().Add(entity);
+        }
+
+        public void AddRange(IEnumerable<TEntity> entities)
+        {
+            _context.Set<TEntity>().AddRange(entities);
+        }
+
+        public void Remove(TEntity entity)
+        {
+            _context.Set<TEntity>().Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<TEntity> entities)
+        {
+            _context.Set<TEntity>().RemoveRange(entities);
         }
     }
 }

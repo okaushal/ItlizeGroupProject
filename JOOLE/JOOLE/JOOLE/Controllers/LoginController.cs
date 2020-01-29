@@ -12,6 +12,21 @@ namespace JOOLE.Controllers
     public class LoginController : Controller
     {
         // GET: Login
+
+
+        private ICustomerRepo _repository;
+        public LoginController() 
+        {
+            this._repository = new CustomerRepo(new JooleEntity());
+        }
+        public LoginController(ICustomerRepo repo)
+        {
+            _repository = repo;
+        }
+        public ActionResult Welcome()
+        {
+            return View();
+        }
         public ActionResult Login()
         {
             return View();
@@ -19,30 +34,21 @@ namespace JOOLE.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Customer user)
+        public ActionResult LOGIN(CUSTOMER customer)
         {
             if (ModelState.IsValid)
             {
-                using (customerEntities customer=new customerEntities())
+                if (_repository.checkUserExists(customer.USERNAME, customer.PASSWORD))
                 {
-                    var obj = customer.getLoginInfo(user.username, user.password).FirstOrDefault();
-                    if (obj == "success")
-                    {
-                        return View("Searching");
-                    }else if(obj=="User Does Not Exists"){
-                        ViewBag.NotValidUser = obj;
-
-                    }
-                    else
-                    {
-                        ViewBag.FailedCount = obj;
-                    }
-
+                    return RedirectToAction("Search", "Search");
+                }
+                else
+                {
+                    return RedirectToAction("Welcome");
                 }
             }
-            return HttpNotFound();
-
-
+            
+            return View("Login");
         }
     }
 }

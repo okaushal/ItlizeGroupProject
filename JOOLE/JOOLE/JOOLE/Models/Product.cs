@@ -26,5 +26,9 @@ namespace JOOLE.Models
         public int modelyear { get; set; }
         public string model_info { get; set; }
         public string techspecs { get; set; }
+    
+        public virtual Manufacturer Manufacturer { get; set; }
+        public virtual Subcat Subcat { get; set; }
+        public virtual SUPPLIER SUPPLIER { get; set; }
     }
 }

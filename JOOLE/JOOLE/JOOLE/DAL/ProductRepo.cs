@@ -4,27 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using JOOLE.Models;
+using Joole.DAL;
 
 namespace JOOLE.DAL
 {
     public class ProductRepo : GenericRepo<Product>, IProductRepo
     {
-        public ProductRepo(ProductEntities context) : base(context)
+        public ProductRepo(JooleEntity context) : base(context)
         {
         }
-      
-        public string getDifference(Product A, Product B)
-        {
-            if (A.Equals(B))
-            {
-                return "No Difference";
-            }
-            else
-            {
-                return "Difference";
-            }
-           
-        }
+        public JooleEntity context { get; set; }
+     
 
        
     }

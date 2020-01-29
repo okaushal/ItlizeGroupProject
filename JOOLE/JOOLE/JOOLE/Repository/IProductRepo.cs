@@ -5,9 +5,6 @@ namespace JOOLE.Repository
 {
     public interface IProductRepo:IGenericRepo<Product>
     {
-      
-
-        string getDifference(Product A, Product B);
-
+        JooleEntity context { get; set; }
     }
 }

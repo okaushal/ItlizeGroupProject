@@ -10,12 +10,16 @@ namespace JOOLE.Repository
 {
     public interface IGenericRepo<TEntity> where TEntity : class
     {
-        TEntity getByID(int id);
+        TEntity GetbyID(int id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
+        void Remove(TEntity entity);
+        void RemoveRange(IEnumerable<TEntity> entities);
 
-        void Create(TEntity newItem);
-        void Delete(TEntity item);
+
 
 
 

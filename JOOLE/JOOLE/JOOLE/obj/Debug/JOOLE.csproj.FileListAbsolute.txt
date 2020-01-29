@@ -76,3 +76,12 @@ C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\obj\
 C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\obj\Debug\JOOLE.csproj.CopyComplete
 C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\obj\Debug\JOOLE.dll
 C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\obj\Debug\JOOLE.pdb
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\EntityFramework.dll
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\EntityFramework.SqlServer.dll
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\WebActivatorEx.dll
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\EntityFramework.xml
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\EntityFramework.SqlServer.xml
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\mashiro\source\repos\okaushal\ItlizeGroupProject\JOOLE\JOOLE\JOOLE\bin\System.Threading.Tasks.Extensions.xml
