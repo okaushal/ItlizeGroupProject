@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,10 @@ namespace Joole.ModelsDTO
 
         [Required(ErrorMessage = "Mandatory")]
         public string FULLNAME { get; set; }
+
+        [DisplayName("Upload Picture")]
         public string PICTURE { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

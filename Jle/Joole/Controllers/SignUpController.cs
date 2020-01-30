@@ -5,6 +5,7 @@ using JOOLE.DAL;
 using JOOLE.Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,6 +36,13 @@ namespace Joole.Controllers
         {
             DBJooleEntities en = new DBJooleEntities();
 
+            string fileName = Path.GetFileNameWithoutExtension(cust.ImageFile.FileName);
+            string extension = Path.GetExtension(cust.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            cust.PICTURE = "~/Image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+            cust.ImageFile.SaveAs(fileName);
+
             //CUSTOMER c = en.CUSTOMERs.Add(cust);
             //CUSTOMER c = en.CUSTOMERs.ToList().FirstOrDefault();
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<CustomerDTO, CUSTOMER>(); });
@@ -47,6 +55,18 @@ namespace Joole.Controllers
             en.SaveChanges();
 
             return View();
+        }
+
+        public ActionResult Display(int id)
+        {
+            CUSTOMER c = new CUSTOMER();
+
+            using (DBJooleEntities db = new DBJooleEntities())
+            {
+                c = db.CUSTOMERs.Where(x => x.CUSTOMERID == id).FirstOrDefault();
+            }
+
+            return View(c);
         }
     }
 }

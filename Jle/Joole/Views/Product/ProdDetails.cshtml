@@ -1,0 +1,94 @@
+﻿@model Joole.Models.Product
+
+@{
+    ViewBag.Title = "ProdDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Product Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="Sorting" style="display: inline-block">
+        <h4>Description</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.manufID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.manufID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.prodname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.prodname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.series)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.series)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.model)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.model)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="Sorting" style="display: inline-block">
+        <h4> Technical Specifications</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.techspecs)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.techspecs)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="Sorting">
+        <h4> TYPE </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.modelyear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.modelyear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.model_info)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.model_info)
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
