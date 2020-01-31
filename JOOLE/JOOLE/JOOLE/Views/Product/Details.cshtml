@@ -1,4 +1,4 @@
-﻿@model JOOLE.ModelsDTO.ProductDTO
+﻿@model dynamic
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-5 mx-auto mt-lg-5 text-center">
-                <h1>@Model.prodname</h1>
-                <p class="mb-5"><strong class="text-white">$@Model.price</strong></p>
+                <h1>@Model.destination.prodname</h1>
+                <p class="mb-5"><strong class="text-white">$@Model.destination.price</strong></p>
 
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="owl-carousel slide-one-item with-dots">
-                    <div><img src="@Model.prodimage" alt="Image" class="img-fluid"></div>
+                    <div><img src="@Model.destination.prodimage" alt="Image" class="img-fluid"></div>
                 </div>
             </div>
             <div class="col-lg-5 pl-lg-5 ml-auto">
@@ -35,178 +35,19 @@
                         <tr>
                             <td><h4 class="table-dark">Description</h4></td>
                         </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.manufName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.manufName)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.price)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.price)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.series)
-                            </td>
+                        @foreach (var item in Model.destination.GetType().GetProperties())
+                        {
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.GetValue(Model.destination,null)
+                                </td>
+                            </tr>
+                        }
 
-                            <td>
-                                @Html.DisplayFor(model => model.series)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.model)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.model)
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="table-striped">
-
-                        <tr>
-                            <td><h4 class="table-dark"> Technical Specifications</h4></td>
-                        </tr>
-                        <tr>
-                            <td><h4 >Power(W)</h4></td>
-                            <td>
-                                @Html.DisplayNameFor(model => model.PwrMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.PwrMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayNameFor(model => model.PwrMax)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.PwrMax)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h4 >Operating Voltage(VAC)</h4></td>
-                            <td>
-                                @Html.DisplayNameFor(model => model.OperatingVoltageMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.OperatingVoltageMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayNameFor(model => model.OperatingVoltageMax)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.OperatingVoltageMax)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.Brightness)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Brightness)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.Warranty)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Warranty)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h4 >Height(inches)</h4></td>
-                            <td>
-                                @Html.DisplayNameFor(model => model.HeightMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.HeightMin)
-                            </td>
-
-                            <td>
-                                @Html.DisplayNameFor(model => model.HeightMax)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.HeightMax)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.Wght)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.Wght)
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="table-striped">
-
-                        <tr>
-                            <td><h4 class="table-dark"> TYPE </h4></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.modelyear)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.modelyear)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.usetype)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.usetype)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.applicate)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.applicate)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.mountingloc)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.mountingloc)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.DisplayNameFor(model => model.accessories)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(model => model.accessories)
-                            </td>
-                        </tr>
+                        
                     </table>
 
                 </div>

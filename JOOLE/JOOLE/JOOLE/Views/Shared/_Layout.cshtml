@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model dynamic
+
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -26,6 +29,10 @@
     <link rel="stylesheet" href="~/Design/products/css/aos.css">
 
     <link rel="stylesheet" href="~/Design/products/css/style.css">
+    <link href="@Url.Content("//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css")" rel="stylesheet" id="bootstrap-css">
+    <script src="@Url.Content("//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("//code.jquery.com/jquery-1.11.1.min.js")"></script>
+
 
 </head>
 
@@ -45,21 +52,33 @@
 
         <div class="container">
             <div class="row align-items-center">
-                @Html.Partial("Display")
+                @{ if (Model.cust.PICTURE != null)
+                    {
+                        @Html.Partial("Display")
+                    }
+                    else
+                    {
+
+                        <img src="~/Images/usericon.jpg" class="img-fluid img-circle" width="30" height="30" />
+
+                    }
+                }
+
+
                 <div class="col-6 col-xl-2">
                     <h1 class="mb-0 site-logo m-0 p-0"><a href="@Url.Action("ProductSummary")" class="mb-0">JOOLE</a></h1>
                 </div>
 
                 <div class="col-12 col-md-10 d-none d-xl-block">
                     <nav class="site-navigation position-relative text-right" role="navigation">
-                        <div>@Html.Partial("searchBar")</div>
 
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li>@Html.Partial("searchBar")</li>
                             <li><a href="@Url.Action("Welcome","Login")" class="nav-link"><h3>Home</h3></a></li>
                             <li><a href="#summary-section" class="nav-link"><h3>Summary</h3></a></li>
                             <li><a href="@Url.Action("Search","Search")" class="nav-link"><h3>Search</h3></a></li>
                             <li><a href="#Filter" class="nav-link"><h3>Filter</h3></a></li>
-                            <li><a href="" class="nav-link"><h3>Compare</h3></a></li>
+                            <li><input type="submit" id="compare" class="nav-link"><h3>Compare</h3></li>
                         </ul>
                     </nav>
                 </div>
@@ -74,9 +93,9 @@
 
 
 
-    @RenderBody();
+    @RenderBody()
 
-    }
+
 
 
     <script src="~/Design/products/js/jquery-3.3.1.min.js"></script>
@@ -123,9 +142,27 @@
             })
         })
 
+            var array = [];
+            $(".checkbox-inline").click(function () {
+                array.push(Number($(this).attr('id')));
+            });
+            $('#compare').click(function () {
+                console.log(array)
+                $.ajax({
+                    url: "@Url.Action("compareProduct", "Product")",
+                    dataType: "json",
+                    traditional: true,
+                    data: {
+                        ids: array
+                    }
+                })
+            })
 
         })
     </script>
+
+
+
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

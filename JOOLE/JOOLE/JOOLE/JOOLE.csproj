@@ -544,6 +544,7 @@
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Images\usericon.jpg" />
     <Content Include="Models\JOOLE.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>JOOLE.edmx</DependentUpon>
@@ -858,6 +859,8 @@
     <Content Include="Views\Shared\searchBar.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Shared\Display.cshtml" />
+    <Content Include="Views\Product\compareView.cshtml" />
+    <Content Include="Views\Product\compareProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -871,9 +874,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

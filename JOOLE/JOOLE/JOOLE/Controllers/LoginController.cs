@@ -50,7 +50,7 @@ namespace JOOLE.Controllers
             {
                 if (_repository.checkUserExists(customer.USERNAME, customer.PASSWORD))
                 {
-                    return RedirectToAction("Search", "Search");
+                    return RedirectToAction("ProductSummary", "Product", customer);
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace JOOLE.Controllers
                     unitofwork.Complete();
                 }
 
-                return RedirectToAction("ProductSummary", "Product", customer.PICTURE);
+                return RedirectToAction("ProductSummary", "Product", customer);
 
 
             }

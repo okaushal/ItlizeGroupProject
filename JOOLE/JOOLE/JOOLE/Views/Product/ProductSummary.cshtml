@@ -51,7 +51,7 @@
 <div class="site-section" id="summary-section">
     <div class="container">
         <div class="row large-gutters">
-            
+
 
 
         </div>
@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-md-3 order-1 order-md-2">
                 <div class="mb-5">
-                    <h3 class="text-black mb-4 h5 font-family-2">Filter</h3>
+                    <h1 class="text-black mb-4 h5 font-family-2">Filter</h1>
                     @using (Html.BeginForm("SearchedProducts", "Product"))
                     {
 
@@ -94,17 +94,19 @@
 
                         <div class="form-group">
                             <div class="select-wrap">
-                                <span class="icon icon-keyboard_arrow_down"></span>
                                 <h3 class="alert-dark">Model Year</h3>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     @Html.TextBox("yearFrom", "1980", new { @class = "form-control" })
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     @Html.TextBox("yearTo", "2020", new { @class = "form-control" })
                                 </div>
 
                             </div>
                         </div>
+                        <br />
+                        <br />
+                        <br />
 
 
                         <div class="mb-5">
@@ -117,38 +119,42 @@
                         <button class="btn btn-lg btn-primary" type="submit">APPLY</button>
                     }
                 </div>
-                </div>
+            </div>
 
 
-                <div class="col-md-9 order-2 order-md-1">
+            <div class="col-md-9 order-2 order-md-1">
 
-                    <div class="row large-gutters">
-                        @foreach (var item in Model.Product)
-                        {
-                            <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
-                                <div class="ftco-media-1">
-                                    <div class="ftco-media-1-inner">
-                                        <a href="@Url.Action("Details","Product",new {item.productID})" class="d-inline-block mb-4"><img src="@item.prodimage" alt="FImage" class="img-fluid"></a>
-                                        <div class="ftco-media-details">
-                                            <h3>@item.prodname</h3>
-                                            <h4>@item.model</h4>
-                                            <h4>@item.series</h4>
-                                            <input class="checkbox-inline" type="checkbox" value="Compare" /><h4>Compare</h4>
-                                            <br />
-                                            <button class="ui-button">Add to</button>
-                                        </div>
-
+                <div class="row large-gutters">
+                    @foreach (var item in Model.Product)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-5 mb-lg-5 ">
+                            <div class="ftco-media-1">
+                                <div class="ftco-media-1-inner">
+                                    <a href="@Url.Action("Details","Product",new {item.productID})" class="d-inline-block mb-4"><img src="@item.prodimage" alt="FImage" class="img-fluid"></a>
+                                    <div class="ftco-media-details">
+                                        <h3>@item.prodname</h3>
+                                        <h4>@item.model</h4>
+                                        <h4>@item.series</h4>
+                                        
+                                        <input class="checkbox-inline" type="checkbox" value="true" id="@item.productID" name="check" /><h4>Compare</h4>
+                                        
+                                        <br />
+                                        <button class="ui-button">Add to</button>
                                     </div>
+
                                 </div>
                             </div>
-                        }
+                        </div>
+                    }
 
 
 
-                    </div>
+
 
                 </div>
-            
+
+            </div>
+
         </div>
     </div>
     <footer class="site-footer">
@@ -211,6 +217,11 @@
     </footer>
 
 </div>
+
+@section Scripts
+{
+ 
+}
 
 
 

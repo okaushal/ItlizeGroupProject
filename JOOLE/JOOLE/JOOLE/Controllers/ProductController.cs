@@ -17,23 +17,31 @@ namespace JOOLE.Controllers
     {
         // GET: Product
         private IProductRepo _repository;
+        public dynamic myModel;
+        public static List<int> collectedIDs;
 
         public ProductController()
         {
             this._repository = new ProductRepo(new JOOLEEntity());
+            this.myModel = new ExpandoObject();
+            collectedIDs = new List<int>();
         }
 
         public ProductController(IProductRepo pro)
         {
             this._repository = pro;
-        }
-        public ActionResult ProductSummary(IEnumerable<Product> products=null, string subName=null, string picture=null)
-        {
-            dynamic myModel = new ExpandoObject();
+            this.myModel = new ExpandoObject();
+            collectedIDs = new List<int>();
 
-            CUSTOMER new_cust = new CUSTOMER();
-            new_cust.PICTURE = picture;
-            myModel.customer = new_cust;
+
+        }
+        public ActionResult ProductSummary(IEnumerable<Product> products=null, string subName=null, CUSTOMER customer=null)
+        {
+            if (customer != null)
+            {
+                myModel.cust = customer;
+            }
+
             if (products != null)
             {
                 myModel.Product = products;
@@ -68,10 +76,11 @@ namespace JOOLE.Controllers
             return RedirectToAction("ProductSummary",_repository.getProductFromFilter(subName,year1,year2,price));
         }
 
-        
 
-        public ActionResult Details(int productID)
+
+        public ActionResult Details(int productID, CUSTOMER customer = null)
         {
+            myModel.cust = customer;
 
             Product pr = _repository.GetbyID(productID);
 
@@ -80,18 +89,53 @@ namespace JOOLE.Controllers
             IMapper iMapper = config.CreateMapper();
             var source = new ProductDTO();
             var destination = iMapper.Map<Product, ProductDTO>(pr);
+            myModel.destination = destination;
 
             if (destination.sub_catID == 2)
             {
-                return View("Details", destination);
+                return View("Details", myModel);
             }
 
             else
             {
-                return View("Details", destination);
+                return View("Details", myModel);
             }
         }
 
+        public ActionResult compareSelected(int pID, bool check=false)
+        {
+            collectedIDs.Add(pID);
+            return new EmptyResult();
+        }
 
+        public ActionResult compareView(CUSTOMER customer=null)
+        {
+            List<Product> plst = new List<Product>();
+            myModel.cust = customer;    
+            foreach(var item in collectedIDs)
+            {
+                plst.Add(_repository.GetbyID(item));
+            }
+            myModel.compare = plst;
+            return View(myModel);
+        }
+
+
+
+        public ActionResult compareProduct(List<int> ids, CUSTOMER customer=null)
+        {
+            myModel.cust = customer;
+            List<Product> products = new List<Product>();
+
+            foreach (var id in ids)
+            {
+                products.Add(_repository.GetbyID(id));
+            }
+            myModel.pro = products;
+
+            return View("compareProduct",myModel);
+        }
     }
+
+
 }
