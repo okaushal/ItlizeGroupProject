@@ -1,0 +1,168 @@
+﻿@model JooleApp.ModelsDTO.ProductDTO
+@{
+    ViewBag.Title = "ProdDetails2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProdDetails2</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="PrdDetails" style="display: inline-block">
+        <h4> Description </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.manufName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.manufName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.series)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.series)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.model)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.model)
+            </dd>
+        </dl>
+    </div>
+    <div class="PrdDetails" style="display: inline-block">
+        <h4> Technical Specifications</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PwrMin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PwrMin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PwrMax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PwrMax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OperatingVoltageMin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OperatingVoltageMin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OperatingVoltageMax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OperatingVoltageMax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Brightness)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Brightness)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Warranty)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Warranty)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeightMin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeightMin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeightMax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeightMax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Wght)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wght)
+            </dd>
+        </dl>
+    </div>
+    <div class="PrdDetails">
+        <h4> TYPE </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.modelyear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.modelyear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.usetype)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.usetype)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.applicate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.applicate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mountingloc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mountingloc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.accessories)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.accessories)
+            </dd>
+        </dl>
+    </div>
+</div>

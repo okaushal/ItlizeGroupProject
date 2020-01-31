@@ -140,6 +140,7 @@
     <Compile Include="Interface\ICustomerRepo.cs" />
     <Compile Include="Interface\IGenericRepo.cs" />
     <Compile Include="Interface\IProductRepo.cs" />
+    <Compile Include="Interface\IUnitofWork.cs" />
     <Compile Include="ModelsDTO\CustomerDTO.cs" />
     <Compile Include="ModelsDTO\ProductDTO.cs" />
     <Compile Include="Models\CUSTOMER.cs">
@@ -173,6 +174,7 @@
     <Compile Include="RepoImplementation\CustomerRepo.cs" />
     <Compile Include="RepoImplementation\GenericRepo.cs" />
     <Compile Include="RepoImplementation\ProductRepo.cs" />
+    <Compile Include="RepoImplementation\UnitofWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -228,11 +230,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\ProdDetails.cshtml" />
+    <Content Include="Views\Product\ProdDetails2.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="Views\SignUp\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

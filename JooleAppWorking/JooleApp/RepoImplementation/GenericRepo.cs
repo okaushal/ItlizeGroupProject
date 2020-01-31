@@ -22,6 +22,11 @@ namespace JooleApp.RepoImplementation
             return _context.Set<TEntity>().Find(id);
         }
 
+        public TEntity GetbyUname(string uname)
+        {
+            return _context.Set<TEntity>().Find(uname);
+        }
+
         public IEnumerable<TEntity> GetAll()
         {
             return _context.Set<TEntity>().ToList();

@@ -30,38 +30,45 @@ namespace JooleApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateCust(CustomerDTO cust)
+        public ActionResult Index(CustomerDTO cust)
         {
-            DBJooleEntities en = new DBJooleEntities();
+            using (var unitofwork = new UnitofWork(new DBJooleEntities()))
+            {
+
+                //Will Save Image to DB and Images Folder
+                string fileName = Path.GetFileNameWithoutExtension(cust.ImageFile.FileName);
+                string extension = Path.GetExtension(cust.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                cust.PICTURE = "~/Images/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                cust.ImageFile.SaveAs(fileName);
+
+                //Will Map CustomerDTO to Customer
+                var config = new MapperConfiguration(cfg => { cfg.CreateMap<CustomerDTO, CUSTOMER>(); });
+
+                IMapper iMapper = config.CreateMapper();
+                var source = new CustomerDTO();
+                var destination = iMapper.Map<CustomerDTO, CUSTOMER>(cust);
+
+                CUSTOMER c = destination;
+
+                unitofwork.Customers.Add(c);
+                //en.CUSTOMERs.Add(destination);
+                //en.SaveChanges();
+                unitofwork.Complete();
+            }
             
-            //Will Save Image to DB and Images Folder
-            string fileName = Path.GetFileNameWithoutExtension(cust.ImageFile.FileName);
-            string extension = Path.GetExtension(cust.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            cust.PICTURE = "~/Image/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-            cust.ImageFile.SaveAs(fileName);
-
-            //Will Map CustomerDTO to Customer
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<CustomerDTO, CUSTOMER>(); });
-
-            IMapper iMapper = config.CreateMapper();
-            var source = new CustomerDTO();
-            var destination = iMapper.Map<CustomerDTO, CUSTOMER>(cust);
-
-            en.CUSTOMERs.Add(destination);
-            en.SaveChanges();
-
-            return View();
+            return RedirectToAction("Display", new { uname = cust.USERNAME});
         }
 
-        public ActionResult Display(int id)
+        public ActionResult Display(string uname)
         {
             CUSTOMER c = new CUSTOMER();
 
-            using (DBJooleEntities db = new DBJooleEntities())
+            using (var unitofwork = new UnitofWork(new DBJooleEntities()))
             {
-                c = db.CUSTOMERs.Where(x => x.CUSTOMERID == id).FirstOrDefault();
+                c = unitofwork.Customers.Find(x => x.USERNAME == uname).FirstOrDefault();
+                //c = db.CUSTOMERs.Where(x => x.USERNAME == uname).FirstOrDefault();
             }
 
             return View(c);

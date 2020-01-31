@@ -42,7 +42,15 @@ namespace JooleApp.Controllers
             var source = new ProductDTO();
             var destination = iMapper.Map<Product, ProductDTO>(pr);
 
-            return View(destination);
+            if (destination.sub_catID == 2)
+            {
+                return View("ProdDetails",destination);
+            }
+
+            else
+            {
+                return View("ProdDetails2", destination);
+            }
         }
     }
 }

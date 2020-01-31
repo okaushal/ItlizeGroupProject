@@ -10,6 +10,7 @@ namespace JooleApp.Interface
     {
         //Get or Select Items
         TEntity GetbyID(int id);
+        TEntity GetbyUname(string uname);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
