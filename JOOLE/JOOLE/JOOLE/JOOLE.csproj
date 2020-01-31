@@ -353,6 +353,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Design\login_design\images\JooleLogo.PNG" />
     <Content Include="Design\login_design\images\logo.png" />
     <Content Include="Design\products\css\font-awesome.min.css" />
     <Content Include="Design\products\css\multirange.css" />
