@@ -18,5 +18,7 @@ namespace JOOLE.Models
         public string PROJECT_LOCATION { get; set; }
         public string PROJECT_NAME { get; set; }
         public int CUSTOMERID { get; set; }
+    
+        public virtual CUSTOMER CUSTOMER { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace JOOLE.Repository
 {
     public interface IProjectRepo:IGenericRepo<PROJECT>
     {
-        JooleEntity context { get; set; }
+        JOOLEEntity context { get; set; }
         IEnumerable<PROJECT> getProjectsBySameCustomer(int customerID);
     }
 }

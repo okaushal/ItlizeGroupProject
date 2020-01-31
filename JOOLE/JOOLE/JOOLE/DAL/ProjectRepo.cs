@@ -11,10 +11,10 @@ namespace JOOLE.DAL
 {
     public class ProjectRepo :GenericRepo<PROJECT> , IProjectRepo
     {
-        public ProjectRepo(JooleEntity context):base(context)
+        public ProjectRepo(JOOLEEntity context):base(context)
         {
         }
-        public JooleEntity context { get; set; }
+        public JOOLEEntity context { get; set; }
         
         public IEnumerable<PROJECT> getProjectsBySameCustomer(int customerID)
         {
