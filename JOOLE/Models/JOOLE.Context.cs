@@ -25,12 +25,9 @@ namespace JOOLE.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
-        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<PROJECT> PROJECTs { get; set; }
         public virtual DbSet<Subcat> Subcats { get; set; }
-        public virtual DbSet<SUPPLIER> SUPPLIERs { get; set; }
     }
 }

@@ -1,0 +1,12 @@
+﻿@using (Html.BeginForm("GetProduct", "Product"))
+{
+    <select id="category">
+        <option value="Mechanical">Mechanical</option>
+        <option value="Plumbing">Plumbing</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Electrical">Electrical</option>
+    </select>
+    @Html.TextBox("searchText", null, new { id = "textBox" })
+    <input type="submit" value="Search" name="subcatName" />
+}
+

@@ -8,6 +8,7 @@ namespace JOOLE.Repository
 {
     public interface ISubCategoryRepo : IGenericRepo<Subcat>
     {
-        IEnumerable<Subcat> GetSubcatsByText(string text);
+        IEnumerable<Subcat> GetSubcats(string startText, string categoryName);
+        List<string> GetSubcatsNames(string startText, string categoryName);
     }
 }

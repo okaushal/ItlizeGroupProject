@@ -11,19 +11,22 @@ namespace JOOLE.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class CUSTOMER
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CUSTOMER()
+        {
+            this.PROJECTs = new HashSet<PROJECT>();
+        }
+    
         public int CUSTOMERID { get; set; }
-        
-      
-        [Required]
         public string USERNAME { get; set; }
-        [Required]
-        [MinLength(6)]
         public string PASSWORD { get; set; }
         public string FULLNAME { get; set; }
         public string PICTURE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PROJECT> PROJECTs { get; set; }
     }
 }

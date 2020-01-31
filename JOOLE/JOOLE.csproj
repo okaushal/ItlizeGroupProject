@@ -140,41 +140,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="DAL\CategoryRepo.cs" />
     <Compile Include="DAL\CustomerRepo.cs" />
     <Compile Include="DAL\GenericRepo.cs" />
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
+    <Compile Include="DAL\SubCategoryRepo.cs" />
+    <Compile Include="Models\CUSTOMER.cs">
+      <DependentUpon>Joole.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\JOOLE.Context.cs">
+    <Compile Include="Models\Joole.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JOOLE.Context.tt</DependentUpon>
+      <DependentUpon>Joole.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\JOOLE.cs">
+    <Compile Include="Models\Joole.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JOOLE.tt</DependentUpon>
+      <DependentUpon>Joole.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\JOOLE.Designer.cs">
+    <Compile Include="Models\Joole.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JOOLE.edmx</DependentUpon>
+      <DependentUpon>Joole.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Manufacturer.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>Joole.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECT.cs">
+      <DependentUpon>Joole.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subcat.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
+      <DependentUpon>Joole.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SUPPLIER.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repository\ICategoryRepo.cs" />
     <Compile Include="Repository\ICustomerRepo.cs" />
-    <Compile Include="Models\CUSTOMER.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
-    </Compile>
     <Compile Include="Repository\IProductRepo.cs" />
     <Compile Include="Repository\IProjectRepo.cs" />
     <Compile Include="Repository\IGenericRepo.cs" />
@@ -182,12 +178,6 @@
     <Compile Include="DAL\ProjectRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PROJECT.cs">
-      <DependentUpon>JOOLE.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ISubCategoryRepo.cs" />
@@ -201,6 +191,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -234,15 +225,15 @@
     <Content Include="Design\login_design\vendor\select2\select2.min.css" />
     <Content Include="Design\login_design\vendor\select2\select2.min.js" />
     <Content Include="Design\login_design\vendor\tilt\tilt.jquery.min.js" />
-    <Content Include="Models\JOOLE.Context.tt">
+    <Content Include="Models\Joole.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JOOLE.edmx</DependentUpon>
-      <LastGenOutput>JOOLE.Context.cs</LastGenOutput>
+      <DependentUpon>Joole.edmx</DependentUpon>
+      <LastGenOutput>Joole.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\JOOLE.tt">
+    <Content Include="Models\Joole.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JOOLE.edmx</DependentUpon>
-      <LastGenOutput>JOOLE.cs</LastGenOutput>
+      <DependentUpon>Joole.edmx</DependentUpon>
+      <LastGenOutput>Joole.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -322,13 +313,6 @@
     <Content Include="Design\web_design\plugins\themify-icons\fonts\themify.svg" />
     <Content Include="Design\web_design\plugins\themify-icons\themify-icons.css" />
     <Content Include="Design\web_design\portfolio.html" />
-    <EntityDeploy Include="Models\JOOLE.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JOOLE.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\JOOLE.edmx.diagram">
-      <DependentUpon>JOOLE.edmx</DependentUpon>
-    </Content>
     <Content Include="Design\login_design\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Design\login_design\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="Design\login_design\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -404,12 +388,20 @@
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Design\login_design\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\Joole.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Joole.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Joole.edmx.diagram">
+      <DependentUpon>Joole.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -448,7 +440,8 @@
     <Content Include="Design\web_design\scss\_typography.scss" />
     <Content Include="Design\web_design\scss\_variables.scss" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Search\_Search.cshtml" />
+    <Content Include="Views\Shared\_Search.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

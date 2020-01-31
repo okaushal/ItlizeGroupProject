@@ -23,3 +23,10 @@ textarea {
     max-width: 280px;
 }
 
+ul.ui-autocomplete {
+    list-style: none;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+

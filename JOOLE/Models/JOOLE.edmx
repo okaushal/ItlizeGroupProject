@@ -4,30 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryId" />
-          </Key>
-          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="JooleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CUSTOMER">
           <Key>
             <PropertyRef Name="CUSTOMERID" />
           </Key>
-          <Property Name="CUSTOMERID" Type="int" Nullable="false" />
+          <Property Name="CUSTOMERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="USERNAME" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="PASSWORD" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="FULLNAME" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="PICTURE" Type="nchar" MaxLength="150" />
-        </EntityType>
-        <EntityType Name="Manufacturer">
-          <Key>
-            <PropertyRef Name="manufID" />
-          </Key>
-          <Property Name="manufID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="manufname" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -35,24 +21,42 @@
           </Key>
           <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sub_catID" Type="int" Nullable="false" />
-          <Property Name="SUPPLIERID" Type="int" Nullable="false" />
-          <Property Name="manufID" Type="int" Nullable="false" />
+          <Property Name="manufName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="prodname" Type="varchar" MaxLength="3000" Nullable="false" />
           <Property Name="prodimage" Type="varchar" MaxLength="8000" />
           <Property Name="price" Type="numeric" Precision="8" Scale="2" Nullable="false" />
           <Property Name="series" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="model" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="modelyear" Type="int" Nullable="false" />
-          <Property Name="model_info" Type="varchar" MaxLength="8000" />
-          <Property Name="techspecs" Type="varchar" MaxLength="8000" />
+          <Property Name="usetype" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="applicate" Type="varchar" MaxLength="200" />
+          <Property Name="mountingloc" Type="varchar" MaxLength="200" />
+          <Property Name="accessories" Type="varchar" MaxLength="300" />
+          <Property Name="Airflow" Type="int" />
+          <Property Name="PwrMin" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="PwrMax" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="OperatingVoltageMin" Type="varchar" MaxLength="20" />
+          <Property Name="OperatingVoltageMax" Type="varchar" MaxLength="20" />
+          <Property Name="FanSpeedMin" Type="varchar" MaxLength="20" />
+          <Property Name="FanSpeedMax" Type="varchar" MaxLength="20" />
+          <Property Name="NumofSpeeds" Type="varchar" MaxLength="20" />
+          <Property Name="SoundAtMaxSpeed" Type="varchar" MaxLength="20" />
+          <Property Name="FanSweepDiam" Type="varchar" MaxLength="20" />
+          <Property Name="SuctionSpeed" Type="varchar" MaxLength="20" />
+          <Property Name="PipeDiameter" Type="varchar" MaxLength="20" />
+          <Property Name="Brightness" Type="varchar" MaxLength="20" />
+          <Property Name="Warranty" Type="varchar" MaxLength="20" />
+          <Property Name="HeightMin" Type="varchar" MaxLength="20" />
+          <Property Name="HeightMax" Type="varchar" MaxLength="20" />
+          <Property Name="Wght" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="PROJECT">
           <Key>
             <PropertyRef Name="PROJECT ID" />
           </Key>
-          <Property Name="PROJECT ID" Type="int" Nullable="false" />
+          <Property Name="PROJECT ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PROJECT LOCATION" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="PROJECT NAME" Type="nchar" MaxLength="50" />
+          <Property Name="PROJECT NAME" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="CUSTOMERID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Subcat">
@@ -61,33 +65,9 @@
           </Key>
           <Property Name="sub_catID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sub_catname" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CategoryID" Type="int" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
-        <EntityType Name="SUPPLIER">
-          <Key>
-            <PropertyRef Name="SUPPLIERID" />
-          </Key>
-          <Property Name="SUPPLIERID" Type="int" Nullable="false" />
-          <Property Name="USERNAME" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="PASSWORD" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="FULLNAME" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="PICTURE" Type="nchar" MaxLength="150" />
-        </EntityType>
-        <Association Name="FK__Product__manufID__32E0915F">
-          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Manufacturer">
-              <PropertyRef Name="manufID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="manufID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__sub_cat__30F848ED">
+        <Association Name="FK__Product__sub_cat__403A8C7D">
           <End Role="Subcat" Type="Self.Subcat" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -101,89 +81,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__SUPPLIE__31EC6D26">
-          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+        <Association Name="FK__PROJECT__CUSTOME__3A81B327">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SUPPLIER">
-              <PropertyRef Name="SUPPLIERID" />
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMERID" />
             </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SUPPLIERID" />
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="CUSTOMERID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Subcat__Category__2C3393D0">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Subcat" Type="Self.Subcat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="Subcat">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DatabaseModel3StoreContainer">
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="JooleModelStoreContainer">
           <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROJECT" EntityType="Self.PROJECT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subcat" EntityType="Self.Subcat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Product__manufID__32E0915F" Association="Self.FK__Product__manufID__32E0915F">
-            <End Role="Manufacturer" EntitySet="Manufacturer" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__sub_cat__30F848ED" Association="Self.FK__Product__sub_cat__30F848ED">
+          <AssociationSet Name="FK__Product__sub_cat__403A8C7D" Association="Self.FK__Product__sub_cat__403A8C7D">
             <End Role="Subcat" EntitySet="Subcat" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__SUPPLIE__31EC6D26" Association="Self.FK__Product__SUPPLIE__31EC6D26">
-            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Subcat__Category__2C3393D0" Association="Self.FK__Subcat__Category__2C3393D0">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Subcat" EntitySet="Subcat" />
+          <AssociationSet Name="FK__PROJECT__CUSTOME__3A81B327" Association="Self.FK__PROJECT__CUSTOME__3A81B327">
+            <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+            <End Role="PROJECT" EntitySet="PROJECT" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryId" />
-          </Key>
-          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Subcats" Relationship="Self.FK__Subcat__Category__2C3393D0" FromRole="Category" ToRole="Subcat" />
-        </EntityType>
+      <Schema Namespace="JooleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="CUSTOMER">
           <Key>
             <PropertyRef Name="CUSTOMERID" />
           </Key>
-          <Property Name="CUSTOMERID" Type="Int32" Nullable="false" />
+          <Property Name="CUSTOMERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="FULLNAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="PICTURE" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Manufacturer">
-          <Key>
-            <PropertyRef Name="manufID" />
-          </Key>
-          <Property Name="manufID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="manufname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__manufID__32E0915F" FromRole="Manufacturer" ToRole="Product" />
+          <NavigationProperty Name="PROJECTs" Relationship="Self.FK__PROJECT__CUSTOME__3A81B327" FromRole="CUSTOMER" ToRole="PROJECT" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -191,28 +129,45 @@
           </Key>
           <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sub_catID" Type="Int32" Nullable="false" />
-          <Property Name="SUPPLIERID" Type="Int32" Nullable="false" />
-          <Property Name="manufID" Type="Int32" Nullable="false" />
+          <Property Name="manufName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prodname" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prodimage" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="series" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="model" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="modelyear" Type="Int32" Nullable="false" />
-          <Property Name="model_info" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Name="techspecs" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Manufacturer" Relationship="Self.FK__Product__manufID__32E0915F" FromRole="Product" ToRole="Manufacturer" />
-          <NavigationProperty Name="Subcat" Relationship="Self.FK__Product__sub_cat__30F848ED" FromRole="Product" ToRole="Subcat" />
-          <NavigationProperty Name="SUPPLIER" Relationship="Self.FK__Product__SUPPLIE__31EC6D26" FromRole="Product" ToRole="SUPPLIER" />
+          <Property Name="usetype" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="applicate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mountingloc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="accessories" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Airflow" Type="Int32" />
+          <Property Name="PwrMin" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PwrMax" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OperatingVoltageMin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OperatingVoltageMax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FanSpeedMin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FanSpeedMax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NumofSpeeds" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SoundAtMaxSpeed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FanSweepDiam" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SuctionSpeed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PipeDiameter" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Brightness" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Warranty" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HeightMin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HeightMax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Wght" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Subcat" Relationship="Self.FK__Product__sub_cat__403A8C7D" FromRole="Product" ToRole="Subcat" />
         </EntityType>
         <EntityType Name="PROJECT">
           <Key>
             <PropertyRef Name="PROJECT_ID" />
           </Key>
-          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PROJECT_LOCATION" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PROJECT_NAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="PROJECT_NAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CUSTOMERID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__PROJECT__CUSTOME__3A81B327" FromRole="PROJECT" ToRole="CUSTOMER" />
         </EntityType>
         <EntityType Name="Subcat">
           <Key>
@@ -220,50 +175,22 @@
           </Key>
           <Property Name="sub_catID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sub_catname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CategoryID" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Subcat__Category__2C3393D0" FromRole="Subcat" ToRole="Category" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__sub_cat__30F848ED" FromRole="Subcat" ToRole="Product" />
+          <Property Name="CategoryName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Product__sub_cat__403A8C7D" FromRole="Subcat" ToRole="Product" />
         </EntityType>
-        <EntityType Name="SUPPLIER">
-          <Key>
-            <PropertyRef Name="SUPPLIERID" />
-          </Key>
-          <Property Name="SUPPLIERID" Type="Int32" Nullable="false" />
-          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="FULLNAME" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="PICTURE" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK__Product__SUPPLIE__31EC6D26" FromRole="SUPPLIER" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK__Subcat__Category__2C3393D0">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Subcat" Type="Self.Subcat" Multiplicity="*" />
+        <Association Name="FK__PROJECT__CUSTOME__3A81B327">
+          <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+          <End Role="PROJECT" Type="Self.PROJECT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryId" />
+            <Principal Role="CUSTOMER">
+              <PropertyRef Name="CUSTOMERID" />
             </Principal>
-            <Dependent Role="Subcat">
-              <PropertyRef Name="CategoryID" />
+            <Dependent Role="PROJECT">
+              <PropertyRef Name="CUSTOMERID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__manufID__32E0915F">
-          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Manufacturer">
-              <PropertyRef Name="manufID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="manufID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__sub_cat__30F848ED">
+        <Association Name="FK__Product__sub_cat__403A8C7D">
           <End Role="Subcat" Type="Self.Subcat" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -277,42 +204,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__SUPPLIE__31EC6D26">
-          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SUPPLIER">
-              <PropertyRef Name="SUPPLIERID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SUPPLIERID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DatabaseEntities3" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Category" />
+        <EntityContainer Name="JooleEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
-          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="PROJECTs" EntityType="Self.PROJECT" />
           <EntitySet Name="Subcats" EntityType="Self.Subcat" />
-          <EntitySet Name="SUPPLIERs" EntityType="Self.SUPPLIER" />
-          <AssociationSet Name="FK__Subcat__Category__2C3393D0" Association="Self.FK__Subcat__Category__2C3393D0">
-            <End Role="Category" EntitySet="Categories" />
+          <AssociationSet Name="FK__PROJECT__CUSTOME__3A81B327" Association="Self.FK__PROJECT__CUSTOME__3A81B327">
+            <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+            <End Role="PROJECT" EntitySet="PROJECTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__sub_cat__403A8C7D" Association="Self.FK__Product__sub_cat__403A8C7D">
             <End Role="Subcat" EntitySet="Subcats" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__manufID__32E0915F" Association="Self.FK__Product__manufID__32E0915F">
-            <End Role="Manufacturer" EntitySet="Manufacturers" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__sub_cat__30F848ED" Association="Self.FK__Product__sub_cat__30F848ED">
-            <End Role="Subcat" EntitySet="Subcats" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__SUPPLIE__31EC6D26" Association="Self.FK__Product__SUPPLIE__31EC6D26">
-            <End Role="SUPPLIER" EntitySet="SUPPLIERs" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
@@ -321,17 +223,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseModel3StoreContainer" CdmEntityContainer="DatabaseEntities3">
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="DatabaseModel3.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="JooleModelStoreContainer" CdmEntityContainer="JooleEntity">
           <EntitySetMapping Name="CUSTOMERs">
-            <EntityTypeMapping TypeName="DatabaseModel3.CUSTOMER">
+            <EntityTypeMapping TypeName="JooleModel.CUSTOMER">
               <MappingFragment StoreEntitySet="CUSTOMER">
                 <ScalarProperty Name="CUSTOMERID" ColumnName="CUSTOMERID" />
                 <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
@@ -341,34 +235,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="DatabaseModel3.Manufacturer">
-              <MappingFragment StoreEntitySet="Manufacturer">
-                <ScalarProperty Name="manufID" ColumnName="manufID" />
-                <ScalarProperty Name="manufname" ColumnName="manufname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="DatabaseModel3.Product">
+            <EntityTypeMapping TypeName="JooleModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="productID" ColumnName="productID" />
                 <ScalarProperty Name="sub_catID" ColumnName="sub_catID" />
-                <ScalarProperty Name="SUPPLIERID" ColumnName="SUPPLIERID" />
-                <ScalarProperty Name="manufID" ColumnName="manufID" />
+                <ScalarProperty Name="manufName" ColumnName="manufName" />
                 <ScalarProperty Name="prodname" ColumnName="prodname" />
                 <ScalarProperty Name="prodimage" ColumnName="prodimage" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="series" ColumnName="series" />
                 <ScalarProperty Name="model" ColumnName="model" />
                 <ScalarProperty Name="modelyear" ColumnName="modelyear" />
-                <ScalarProperty Name="model_info" ColumnName="model_info" />
-                <ScalarProperty Name="techspecs" ColumnName="techspecs" />
+                <ScalarProperty Name="usetype" ColumnName="usetype" />
+                <ScalarProperty Name="applicate" ColumnName="applicate" />
+                <ScalarProperty Name="mountingloc" ColumnName="mountingloc" />
+                <ScalarProperty Name="accessories" ColumnName="accessories" />
+                <ScalarProperty Name="Airflow" ColumnName="Airflow" />
+                <ScalarProperty Name="PwrMin" ColumnName="PwrMin" />
+                <ScalarProperty Name="PwrMax" ColumnName="PwrMax" />
+                <ScalarProperty Name="OperatingVoltageMin" ColumnName="OperatingVoltageMin" />
+                <ScalarProperty Name="OperatingVoltageMax" ColumnName="OperatingVoltageMax" />
+                <ScalarProperty Name="FanSpeedMin" ColumnName="FanSpeedMin" />
+                <ScalarProperty Name="FanSpeedMax" ColumnName="FanSpeedMax" />
+                <ScalarProperty Name="NumofSpeeds" ColumnName="NumofSpeeds" />
+                <ScalarProperty Name="SoundAtMaxSpeed" ColumnName="SoundAtMaxSpeed" />
+                <ScalarProperty Name="FanSweepDiam" ColumnName="FanSweepDiam" />
+                <ScalarProperty Name="SuctionSpeed" ColumnName="SuctionSpeed" />
+                <ScalarProperty Name="PipeDiameter" ColumnName="PipeDiameter" />
+                <ScalarProperty Name="Brightness" ColumnName="Brightness" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="HeightMin" ColumnName="HeightMin" />
+                <ScalarProperty Name="HeightMax" ColumnName="HeightMax" />
+                <ScalarProperty Name="Wght" ColumnName="Wght" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROJECTs">
-            <EntityTypeMapping TypeName="DatabaseModel3.PROJECT">
+            <EntityTypeMapping TypeName="JooleModel.PROJECT">
               <MappingFragment StoreEntitySet="PROJECT">
                 <ScalarProperty Name="PROJECT_ID" ColumnName="PROJECT ID" />
                 <ScalarProperty Name="PROJECT_LOCATION" ColumnName="PROJECT LOCATION" />
@@ -378,22 +282,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subcats">
-            <EntityTypeMapping TypeName="DatabaseModel3.Subcat">
+            <EntityTypeMapping TypeName="JooleModel.Subcat">
               <MappingFragment StoreEntitySet="Subcat">
                 <ScalarProperty Name="sub_catID" ColumnName="sub_catID" />
                 <ScalarProperty Name="sub_catname" ColumnName="sub_catname" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SUPPLIERs">
-            <EntityTypeMapping TypeName="DatabaseModel3.SUPPLIER">
-              <MappingFragment StoreEntitySet="SUPPLIER">
-                <ScalarProperty Name="SUPPLIERID" ColumnName="SUPPLIERID" />
-                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
-                <ScalarProperty Name="PICTURE" ColumnName="PICTURE" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

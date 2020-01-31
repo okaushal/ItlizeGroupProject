@@ -15,6 +15,7 @@ namespace JOOLE.Controllers
 
 
         private ICustomerRepo _repository;
+
         public LoginController() 
         {
             this._repository = new CustomerRepo(new JooleEntity());
