@@ -65,6 +65,9 @@ namespace JOOLE.Controllers
         }
 
 
+      
+
+
         public ActionResult SearchedProducts(string subName, int year1=1980, int year2=2020, string price=null)
         {
             if (subName == null)
@@ -102,17 +105,13 @@ namespace JOOLE.Controllers
             }
         }
 
-        public ActionResult compareSelected(int pID, bool check=false)
-        {
-            collectedIDs.Add(pID);
-            return new EmptyResult();
-        }
 
-        public ActionResult compareView(CUSTOMER customer=null)
+        [HttpPost]
+        public ActionResult compareView(int[] compareIDs, CUSTOMER customer=null)
         {
             List<Product> plst = new List<Product>();
             myModel.cust = customer;    
-            foreach(var item in collectedIDs)
+            foreach(var item in compareIDs)
             {
                 plst.Add(_repository.GetbyID(item));
             }
@@ -122,19 +121,7 @@ namespace JOOLE.Controllers
 
 
 
-        public ActionResult compareProduct(List<int> ids, CUSTOMER customer=null)
-        {
-            myModel.cust = customer;
-            List<Product> products = new List<Product>();
-
-            foreach (var id in ids)
-            {
-                products.Add(_repository.GetbyID(id));
-            }
-            myModel.pro = products;
-
-            return View("compareProduct",myModel);
-        }
+        
     }
 
 

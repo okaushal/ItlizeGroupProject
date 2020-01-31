@@ -78,7 +78,7 @@
                             <li><a href="#summary-section" class="nav-link"><h3>Summary</h3></a></li>
                             <li><a href="@Url.Action("Search","Search")" class="nav-link"><h3>Search</h3></a></li>
                             <li><a href="#Filter" class="nav-link"><h3>Filter</h3></a></li>
-                            <li><input type="submit" id="compare" class="nav-link"><h3>Compare</h3></li>
+                            <li><a href="#Filter" class="nav-link"><h3>Compare</h3></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -142,7 +142,7 @@
             })
         })
 
-            var array = [];
+            @*var array = [];
             $(".checkbox-inline").click(function () {
                 array.push(Number($(this).attr('id')));
             });
@@ -156,7 +156,7 @@
                         ids: array
                     }
                 })
-            })
+            })*@
 
         })
     </script>
